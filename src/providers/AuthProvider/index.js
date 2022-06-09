@@ -2,21 +2,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
 import { AuthContext } from "../../context/AuthContext";
 import { getProfile } from "../../api/endpoints/auth";
-import { useLocation } from "react-router-dom";
 
 function AuthProvider(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setTokenData] = useState(null);
-  const location = useLocation();
-  const [route, setRoute] = useState({
-    to: location.pathname,
-    from: location.pathname,
-  });
-
-  useEffect(() => {
-    setRoute((prev) => ({ to: location.pathname, from: prev.to }));
-  }, [location]);
 
   const setToken = useCallback((tokenData) => {
     setTokenData(tokenData);
@@ -61,9 +51,8 @@ function AuthProvider(props) {
       setUser,
       setToken,
       logOut,
-      route,
     }),
-    [isLoaded, user, token, setToken, logOut, route]
+    [isLoaded, user, token, setToken, logOut]
   );
 
   return (

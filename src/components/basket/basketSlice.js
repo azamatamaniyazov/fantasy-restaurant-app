@@ -7,8 +7,6 @@ const initialState = {
   peoples: localStorage.getItem("peoples")
     ? localStorage.getItem("peoples")
     : 1,
-  isHidden: true,
-  dateError: null,
 };
 
 const basketSlice = createSlice({
@@ -27,22 +25,10 @@ const basketSlice = createSlice({
     setPeoples: (state, action) => {
       state.peoples = action.payload;
     },
-    changeIsHidden: (state, action) => {
-      state.isHidden = action.payload;
-    },
-    setDateError: (state, action) => {
-      state.dateError = action.payload;
-    },
   },
 });
 
-export const {
-  addToCart,
-  deleteCartProduct,
-  updateCounter,
-  setPeoples,
-  changeIsHidden,
-  setDateError,
-} = basketSlice.actions;
+export const { addToCart, deleteCartProduct, updateCounter, setPeoples } =
+  basketSlice.actions;
 
 export default basketSlice.reducer;
